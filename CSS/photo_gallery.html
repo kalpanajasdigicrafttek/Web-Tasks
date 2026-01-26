@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .box {
+            border: 2px solid #ccc;
+            overflow: hidden;
+        }
+
+        .box img {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+        }
+
+        .box p {
+            margin: 8px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            .box img{
+                height: 100px;
+            }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Photo Gallery</h2>
+
+<div class="gallery">
+    <div class="box">
+        <img src="images/rose.jpg">
+        <p>Rose</p>
+    </div>
+
+    <div class="box">
+        <img src="images/lotus.jpg">
+        <p>Lotus</p>
+    </div>
+
+    <div class="box">
+        <img src="images/daisy.jpg">
+        <p>Daisy</p>
+    </div>
+
+    <div class="box">
+        <img src="images/sparrow.jpg">
+        <p>Sparrow</p>
+    </div>
+
+    <div class="box">
+        <img src="images/parrot.jpg">
+        <p>Parrot</p>
+    </div>
+
+    <div class="box">
+        <img src="images/pigeon.jpg">
+        <p>pigeon</p>
+    </div>
+
+    <div class="box">
+        <img src="images/lion.jpg">
+        <p>Lion</p>
+    </div>
+
+    <div class="box">
+        <img src="images/cheetah.jpg">
+        <p>Cheetah</p>
+    </div>
+
+    <div class="box">
+        <img src="images/tiger.jpg">
+        <p>Tiger</p>
+    </div>
+
+    <div class="box">
+        <img src="images/beach.jpg">
+        <p>Beach</p>
+    </div>
+
+    <div class="box">
+        <img src="images/tree.jpg">
+        <p>Tree</p>
+    </div>
+
+    <div class="box">
+        <img src="images/mountain.jpg">
+        <p>Mountain</p>
+    </div>
+</div>
+
+</body>
+</html>
