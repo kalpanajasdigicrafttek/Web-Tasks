@@ -1,48 +1,57 @@
-<h1><center>To-Do List</center></h1>
-<input id="input" placeholder="Enter your task">
-<button onclick="add()">Add</button>
-<ul id="listcontainer">
-  <li>html<button id="edit" onclick="edititem(event)">Edit</button><button id="btn" onclick="deleteitem(event)">Delete</button></li>
-</ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <script>
+      var title=document.createElement("h1")
+      title.innerText="To-Do List"
+      title.style.textAlign="center"
+      document.body.append(title)
+      var input=document.createElement("input")
+      input.placeholder="Enter your task"
+      document.body.append(input)
+      var addbtn=document.createElement("button")
+      addbtn.innerText="Add"
+      addbtn.style.marginLeft="5px"
+      document.body.append(addbtn)
+      var ul=document.createElement("ul")
+      document.body.append(ul)
+      addbtn.onclick=function add(){
+        var listitem=document.createElement("li")
+        listitem.innerText=input.value 
+        var delbtn=document.createElement("button")
+        delbtn.innerText="Delete"
+        delbtn.style.marginLeft="5px"
+        delbtn.style.marginTop="5px"
+        delbtn.onclick=deleteitem
+        var editbtn=document.createElement("button")
+        editbtn.innerText="Edit"
+        editbtn.style.marginLeft="5px"
+        editbtn.style.marginTop="5px"
+        editbtn.onclick=edititem
+        listitem.append(editbtn)
+        listitem.append(delbtn)
+        ul.append(listitem)
+      }
+      
+      function deleteitem(event){
+        event.target.parentElement.remove()
 
-<style>
-  li{
-    padding-bottom: 10px;
-  }
-  #edit{
-    margin-left: 5px;
-  }
-  #btn{
-    margin-left: 5px;
-  }
-  
+      }     
 
-</style>
+      function edititem(event){
+        var li=event.target.parentElement
+        var text=li.firstChild.textContent
+        var newtext=prompt("Task",text)
+        if(newtext!=null && newtext!="")
+        {
+          text=li.firstChild.textContent=newtext 
+        }
+        
+      }
 
-<script>
-  var input=document.getElementById("input")
-  var ul=document.getElementById("listcontainer")
-  function add()
-  {
-    var listitem=document.createElement("li")
-    listitem.innerHTML=input.value +"<button id='edit' onclick='edititem(event)'>Edit</button>" + "<button id='btn' onclick='deleteitem(event)'>Delete</button>"
-    ul.append(listitem)
-  }
-
-  function deleteitem(event)
-  {
-    event.target.parentElement.remove()
-  }
-
-  function edititem(event)
-  {
-    var li=event.target.parentElement
-    var text=li.firstChild.textContent
-    var newtext=prompt("Task:",text)
-    if(newtext!=null && newtext!="")
-  {
-    text=li.firstChild.textContent=newtext 
-  }
-  }
-
-</script>
+    </script>
+  </body>
+</html>
