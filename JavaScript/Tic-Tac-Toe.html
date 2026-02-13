@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tic-Tac-Toe</title>
+  <style>
+    h2{
+      text-align: center;
+    }
+    .container{
+      display: grid;
+      grid-template-columns: repeat(3,100px);
+      grid-template-rows: repeat(3,100px);
+    }
+    .box{
+      background-color: aliceblue;
+      border: 2px solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    #btn{
+      margin-top: 30px;
+      color:white;
+      background-color: blue;
+      padding: 10px 20px;
+      border-radius: 50px;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Tic-Tac-Toe Game</h2>
+  <h3 id="turn"></h3>
+
+  <div class="container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+
+  <button id="btn">Restart Game</button>
+
+<script>
+  let boxes = document.querySelectorAll(".box");
+  let turn = document.getElementById("turn");
+  let btn = document.getElementById("btn");
+
+  let player = "X";
+  let gameactive = true;
+
+  turn.innerText = "Player X Turn";
+
+  const winpattern = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ];
+
+  function checkwinner(){
+    for(let pattern of winpattern){
+      let [a,b,c] = pattern;
+      if(
+        boxes[a].innerText !== "" &&
+        boxes[a].innerText === boxes[b].innerText &&
+        boxes[b].innerText === boxes[c].innerText
+      ){
+        turn.innerText = "Player " + boxes[a].innerText + " Wins!";
+        gameactive = false;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function draw(){
+    let isdraw = true;
+    boxes.forEach(box=>{
+      if(box.innerText === ""){
+        isdraw = false;
+      }
+    });
+
+    if(isdraw && gameactive){
+      turn.innerText = "Match Draw!";
+      gameactive = false;
+    }
+  }
+
+  boxes.forEach(box=>{
+    box.addEventListener("click",()=>{
+      if(box.innerText !== "" || !gameactive) return;
+
+      box.innerText = player;
+
+      if(checkwinner()) return;
+
+      draw();
+
+      if(!gameactive) return;
+
+      if(player === "X"){
+        player = "O";
+      } else {
+        player = "X";
+    }
+      turn.innerText = "Player " + player + " Turn";
+    });
+  });
+
+  function restart(){
+    boxes.forEach(box=>{
+      box.innerText = "";
+    });
+    player = "X";
+    gameactive = true;
+    turn.innerText = "Player X Turn";
+  }
+
+  btn.addEventListener("click",restart);
+</script>
+
+</body>
+</html>
